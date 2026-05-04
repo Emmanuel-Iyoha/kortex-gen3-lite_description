@@ -1,0 +1,66 @@
+<robot name="kortex-arm">
+
+<link name="ground_link">
+        <visual>
+            <origin xyz = "0 0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry> 
+        </visual>
+    
+    </link>
+
+    <joint name="ground_to_base_joint" type="fixed">
+        <origin xyz = "0 0 0" rpy="0.0 0.0 0.0"/>
+        <parent link="ground_link"/>
+        <child link="base_link"/>
+    </joint>
+
+    <link name="base_link">
+        <visual>
+            <origin xyz = "0 0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://kortex-gen3-lite_description/meshes/base_link.STL" scale="1.0 1.0 1.0"/>
+            </geometry> 
+        </visual>
+    
+    </link>
+
+    <joint name="base_to_shoulder_joint" type="revolute">
+        <origin xyz = "0 0 0" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="shoulder_link"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.140" upper="3.140" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <link name="shoulder_link">
+        <visual>
+            <origin xyz = "0 0 0.125" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://kortex-gen3-lite_description/meshes/shoulder_link.STL" scale="1.0 1.0 1.0"/>
+            </geometry> 
+        </visual>
+    
+    </link>
+
+    <joint name="shoulder_to_arm_joint" type="fixed">
+        <origin xyz = "0 -0.029 0.240" rpy="1.5710 0.0 0.0"/>
+        <parent link="shoulder_link"/>
+        <child link="arm_link"/>
+        <!-- <axis xyz="0.0 0.0 0.0"/>
+        <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/> -->
+    </joint>
+
+    <link name="arm_link">
+        <visual>
+            <origin xyz = "0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://kortex-gen3-lite_description/meshes/arm_link.STL" scale="1.0 1.0 1.0"/>
+            </geometry> 
+        </visual>
+    
+    </link>
+    
+    
+</robot> 
