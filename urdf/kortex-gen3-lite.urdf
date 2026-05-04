@@ -44,12 +44,12 @@
     
     </link>
 
-    <joint name="shoulder_to_arm_joint" type="fixed">
+    <joint name="shoulder_to_arm_joint" type="revolute">
         <origin xyz = "0 -0.029 0.240" rpy="1.5710 0.0 0.0"/>
         <parent link="shoulder_link"/>
         <child link="arm_link"/>
-        <!-- <axis xyz="0.0 0.0 0.0"/>
-        <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/> -->
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
     </joint>
 
     <link name="arm_link">
@@ -59,8 +59,63 @@
                 <mesh filename="package://kortex-gen3-lite_description/meshes/arm_link.STL" scale="1.0 1.0 1.0"/>
             </geometry> 
         </visual>
-    
+
     </link>
-    
-    
+
+
+    <joint name="arm_to_forearm_joint" type="revolute">
+        <origin xyz = "0 0.28 0.01" rpy="0 3.140 3.140"/>
+        <parent link="arm_link"/>
+        <child link="forearm_link"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <link name="forearm_link">
+        <visual>
+            <origin xyz = "0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://kortex-gen3-lite_description/meshes/forearm_link.STL" scale="1.0 1.0 1.0"/>
+            </geometry> 
+        </visual>
+
+    </link>
+
+    <joint name="forearm_to_lower_wrist_joint" type="revolute">
+        <origin xyz = "0 -0.139 0.02" rpy="1.571 -1.571 0"/>
+        <parent link="forearm_link"/>
+        <child link="lower_wrist_link"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <link name="lower_wrist_link">
+        <visual>
+            <origin xyz = "0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://kortex-gen3-lite_description/meshes/lower_wrist_link.STL" scale="1.0 1.0 1.0"/>
+            </geometry> 
+        </visual>
+
+    </link>
+
+     <joint name="lower_wrist_to_upper_wrist_joint" type="revolute">
+        <origin xyz = "0.028 0.0 0.105" rpy="0 1.571 0"/>
+        <parent link="lower_wrist_link"/>
+        <child link="upper_wrist_link"/>
+        <axis xyz="0.0 0.0 1.0"/>
+        <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <link name="upper_wrist_link">
+        <visual>
+            <origin xyz = "0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://kortex-gen3-lite_description/meshes/upper_wrist_link.STL" scale="1.0 1.0 1.0"/>
+            </geometry> 
+        </visual>
+
+    </link>
+
+
 </robot> 
